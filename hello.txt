@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>!! WELCOME TO THE DURANPAY WEBSITE !!</h1>
+<h2>This Is A Demo Task on GITHUB ACTION CI-CD Pipeline</h2>
+<p>This second question relates to the CI/CD process. Write 1 Dockerfile config + 1 CI/CD Pipeline YAML
+file.
+* Preferably, the YAML file is for GitHub CI/CD. But if you are more familiar with other repos e.g.,
+Bitbucket/Gitlab, feel free to use the syntax for that repo.
+The tasks are:
+- The YAML file will deploy from a docker image created by a Dockerfile.
+- The Dockerfile needs to simply install Nginx and put the file from the repo named "hello.txt" into the
+"/var/www/" folder. Let us assume that folder is the main folder that Nginx will read as a web server
+- The Docker image then needs to be installed on an EC2 server on AWS and running</p>
+
+<p>For GITHUB REPO and YAML CODE, Please refer to link
+<a href="https://github.com/manmohan2823/GithubAction_DockerFiles/blob/main/.github/workflows/main.yml">github link</a>.<br/>
+Commercial support is available at
+<a href="https://github.com/manmohan2823/GithubAction_DockerFiles/blob/main/.github/workflows/main.yml"</a>.</p>
+
+<h1><em>Thank you for using Duranpay Website...!!!.</em></h1>
+<h2>----COME AGAIN----</h2>
+</body>
+</html>
