@@ -1,0 +1,40 @@
+name: docker deploymnet
+
+on:
+ push:
+   branches: ["master"]
+   
+jobs:
+ build:
+   name: Build
+   runs-on: ubuntu-18.04
+   
+   steps:
+     - name: repo checkout
+       uses: actions/checkout@v2
+     - name: docker login
+       env:
+         DOCKER_USER: ${{secrets.DOCKER_USER}}
+         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+       run: |
+         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+     - name: Build the docker image
+       run: docker build . --file Dockerfile --tag manmohan28/dockertask:latest
+     - name: images
+       run: sudo docker images
+     - name: Docker Push
+       run: docker push manmohan28/dockertask:latest
+       
+     - name: AWS SSM Send-Command
+       uses: peterkimzz/aws-ssm-send-command@master
+       id: ssm
+       with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          instance-ids: ${{ secrets.INSTANCE_ID }}
+          working-directory: /home/ubuntu/
+          command: sudo docker run -dit -p 80:80 --name nginx_container manmohan28/dockertask:latest
+          comment: good deploy
+     - name: Get the outputs
+       run: echo "The Command id is ${{ steps.ssm.outputs.command-id }}"
